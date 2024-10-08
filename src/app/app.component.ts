@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,15 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'angular18';
+    breakpointObserver = inject(BreakpointObserver);
+
+    constructor(){
+      this.breakpointObserver.observe([
+        Breakpoints.Handset
+      ]).subscribe((result: BreakpointState)=>{
+          if(result.matches){
+            console.log('This is a handset device');
+          }
+      });
+    }
 }
