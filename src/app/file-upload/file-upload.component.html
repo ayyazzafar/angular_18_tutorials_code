@@ -1,0 +1,30 @@
+<div class="file-upload-container">
+  <h2>File Upload</h2>
+
+  <div class="upload-section">
+    <input type="file" multiple="multiple" class="file-input" #fileInput (change)="onFileSelected($event)">
+    <button [disabled]="!selectedFiles.length" class="upload-button" (click)="uploadFiles()">
+      Upload files
+    </button>
+  </div>
+
+  @if(uploadedFiles.length){
+    <div class="uploads-list">
+      <h3>UPloaded Files</h3>
+      <div class="file-grid">
+        @for( file of uploadedFiles; track file.id){
+          <div class="file-item">
+            <img [src]="file.filepath" alt="uploaded file" class="file-preview">
+            <div class="file-icon">📄</div>
+            <div class="file-info">
+              <span class="file-name">{{file.originalname}}</span>
+              <a [href]="file.filepath" target="_blank" class="download-link">
+                Download
+              </a>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
