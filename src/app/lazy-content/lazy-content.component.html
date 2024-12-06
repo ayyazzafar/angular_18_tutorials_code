@@ -1,0 +1,6 @@
+<div>
+  <button (click)="loadAdvancedFeatures()" *ngIf="!advancedComponent">
+    Load Advanced Features
+  </button>
+  <ng-container *ngComponentOutlet="advancedComponent"></ng-container>
+</div>
